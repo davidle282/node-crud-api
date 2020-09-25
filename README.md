@@ -1,2 +1,2 @@
-# node-crud-api
-RESTful APIs with Nodejs, Expressjs and MongoDb
+# mern-crud-app
+CRUD application using Reactjs ,Nodejs, Expressjs and Mongodb
