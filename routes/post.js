@@ -26,8 +26,8 @@ router.post("/add", (req, res) => {
 });
 
 router.put("/update/:id", (req, res) => {
-  Post.findByIdAndUpdate(
-    req.params.id,
+  Post.findOneAndUpdate(
+    {_id :req.params.id},
     {
       $set: req.body,
     },
@@ -40,10 +40,10 @@ router.put("/update/:id", (req, res) => {
 });
 
 router.delete("/delete/:id", (req, res) => {
-  Post.findByIdAndRemove(req.params.id).exec((error, deleted) => {
-    if (error) returnres.status(400).json({ success: false, error: err });
-    return res.status(200).json({ success: true, data: deleted });
-  });
+  Post.deleteOne({_id :req.params.id},).then(result=>{
+    return res.status(200).json({ success: true, data: result });
+  }).catch(err => console.error(`Delete failed with error: ${err}`))
+
 });
 
 module.exports = router;
